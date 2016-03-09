@@ -1,5 +1,31 @@
 <div ng-controller="listController">
 
-	<span> This is where the searching feature will be. </span>
+	Search: <input ng-model="inputText"><br><br>
+	Sort By: <select data-ng-options="o.name for o in options" data-ng-model="selectedOption"></select>
+	<select data-ng-options="d.name for d in direction" data-ng-model="selectedDirection"></select>
+
+
+	<div class="searchResults">
+
+	  <div class = "result" ng-repeat="movie in movies | filter:inputText | orderBy:selectedOption.id:selectedDirection.id">
+	  	<a href = "#/list/{{ movie.rank }}">
+		  	<div class="left">
+				<img ng-src="./data/images/{{ movie.imdbID }}.jpg"/>
+			</div>
+
+			<div class="right">
+			    <b>{{ movie.title }}</b><br>
+			    Rank: #{{ movie.rank }}
+			</div>
+		</a>
+		<br>
+
+	  </div>
+
+	</div>  
+
+
+
+
 
 </div>

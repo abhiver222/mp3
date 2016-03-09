@@ -1,12 +1,12 @@
 /* Sample Controller */
 app.controller('galleryController', ['$scope', '$http', function($scope, $http) {
 
-    $scope.genres = [ 'Action', 'Adventure', 'Crime', 'Comedy', 'Drama', 'Musical', 
-                    'Mystery', 'Romance', 'Sci-Fi', 'Thriller', 'Western' ];
+    $scope.genres = [ 'Action', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Drama', 'Family', 'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 
+                    'Mystery', 'Romance', 'Sci-Fi', 'Sport', 'Thriller', 'War', 'Western' ];
 
     $scope.filters = { genre: '' };
 
-    $http.get('data/imdb250.json').success(function(data){
+    $http.get('./data/imdb250.json').success(function(data){
 
     	$scope.movies = data;
     	console.log(data);
@@ -21,16 +21,14 @@ app.controller('galleryController', ['$scope', '$http', function($scope, $http) 
 // LIST view for searching
 app.controller('listController', ['$scope', '$http', function($scope, $http) {
 
-	$scope.myRank = $routeParams.rank;
+    $scope.inputText = 'Enter search input';
+    $scope.options = [{ name: 'Title', id: 'title' }, { name: 'Rank', id: 'rank' }];
+    $scope.direction = [{ name: 'Ascending', id: false }, { name: 'Descending', id: true }];    //reverse?
+    $scope.selectedOption = $scope.options[0];
+    $scope.selectedDirection = $scope.direction[0];
 
 
-    //append things onto scope object in order for html to recognize it
-    $scope.change = function () {   //add a name to list
-        $scope.classdata.names.push($scope.inputValue);
-        $scope.inputValue = "";
-    }
-
-    $http.get('data/imdb250.json').success(function(data){
+    $http.get('./data/imdb250.json').success(function(data){
 
         $scope.movies = data;
         console.log(data);
@@ -44,7 +42,7 @@ app.controller('listController', ['$scope', '$http', function($scope, $http) {
 // DETAILS view for 1 movie at a time
 app.controller('detailsController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 
-    $http.get('data/imdb250.json').success(function(data){
+    $http.get('./data/imdb250.json').success(function(data){
         $scope.movie = data[$routeParams.rank - 1];
         nextRank = +$routeParams.rank+1;
         prevRank = +$routeParams.rank-1;

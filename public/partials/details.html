@@ -1,12 +1,12 @@
 <div ng-controller="detailsController">
 
-   	<a href="#/list/{{ prevrank }}" class="button">Prev</a>
-   	<a href="#/list/{{ nextrank }}" class="button">Next</a>
+   	<a href="#/list/{{ prevrank }}" class="button"> ← Prev</a>
+   	<a href="#/list/{{ nextrank }}" class="button"> Next → </a>
 
 	<div class="details">
 
 		<h2>{{ movie.title }}</h2>
-		Rank: {{ movie.rank }}<br><br>
+		Rank: #{{ movie.rank }}<br><br>
 
 		<div class="left">
 			<img ng-src="/data/images/{{ movie.imdbID }}.jpg"/><br>
@@ -16,7 +16,7 @@
 
 			 <i>{{ movie.plot }}</i><br><br>
 
-			 Rated: <b>{{ movie.rated }}</b> <br>
+			 Rated: {{ movie.rated }} <br>
 			 Released: {{ movie.released }} <br>
 			 Runtime: {{ movie.runtime }} <br>
 			 {{ movie.awards }} <br>
