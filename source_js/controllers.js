@@ -21,7 +21,7 @@ app.controller('galleryController', ['$scope', '$http', function($scope, $http) 
 // LIST view for searching
 app.controller('listController', ['$scope', '$http', function($scope, $http) {
 
-    $scope.inputText = 'Enter search input';
+    $scope.inputText = 'Enter a search term';
     $scope.options = [{ name: 'Title', id: 'title' }, { name: 'Rank', id: 'rank' }];
     $scope.direction = [{ name: 'Ascending', id: false }, { name: 'Descending', id: true }];    //reverse?
     $scope.selectedOption = $scope.options[0];
@@ -31,7 +31,6 @@ app.controller('listController', ['$scope', '$http', function($scope, $http) {
     $http.get('./data/imdb250.json').success(function(data){
 
         $scope.movies = data;
-        console.log(data);
 
     }).error(function(err){
         console.log(err);
